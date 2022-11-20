@@ -155,17 +155,18 @@ app.post("/webhook", (req, res) => {
 function receivedMessage(event) {
     let senderID = event.sender.id;
     let msgText = event.message.text;
+    let msg;
     switch (msgText) {
         case "hi":
-           let msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
+            msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
             sendTextMsg(senderID,msg);
             break;
         case "hi":
-            let msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
+             msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
             sendTextMsg(senderID,msg);
             break;
         default:
-            let msg="لم افهم";
+             msg="لم افهم";
             sendTextMsg(senderID,msg);
             break;
     }
