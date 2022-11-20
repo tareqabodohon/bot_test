@@ -20,7 +20,7 @@ app.get("/setup", function (req, res) {
         "greeting": [
             {
                 "locale": "default",
-                "text": "Hello!"
+                "text": "مرحباً {{user_first_name}} أنا المجيب الآلي للصفحة"
             }, {
                 "locale": "en_US",
                 "text": "Timeless apparel for the masses."
