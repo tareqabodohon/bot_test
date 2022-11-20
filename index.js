@@ -140,7 +140,7 @@ app.post("/webhook", (req, res) => {
             entry.messaging.forEach(function (event) {
                 if (event.message) {
 
-                    receivedMessage(event);
+                    receivedMessage(event,pageID);
 
                 }
                 else if (event.postback) {
@@ -152,29 +152,29 @@ app.post("/webhook", (req, res) => {
     }
 });
 
-function receivedMessage(event) {
+function receivedMessage(event,pageID) {
     let senderID = event.sender.id;
     let msgText = event.message.text;
     let msg;
     switch (msgText) {
         case "hi":
             msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
-            sendTextMsg(senderID,msg);
+            sendTextMsg(senderID,msg,pageID);
             break;
         case "hi":
              msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
-            sendTextMsg(senderID,msg);
+            sendTextMsg(senderID,msg,pageID);
             break;
         default:
              msg="لم افهم";
-            sendTextMsg(senderID,msg);
+            sendTextMsg(senderID,msg,pageID);
             break;
     }
     res.sendStatus(200);
 };
 
 
-function sendTextMsg(recipient_id,msg){
+function sendTextMsg(recipient_id,msg,pageID){
 let data={
     "recipient":{
         'id':recipient_id
@@ -187,7 +187,7 @@ let data={
 
 request(
     {
-        url: "https://graph.facebook.com/v15.0/me/messages?recipient={'id':"+recipient_id+"}&messaging_type=RESPONSE&message={'text':'hello,world'}&access_token=PAGE-ACCESS-TOKEN" + pageAccessToken,
+        url: "https://graph.facebook.com/v15.0/"+pageID+"/messages?recipient={'id':"+recipient_id+"}&messaging_type=RESPONSE&message={'text':'hello,world'}&access_token=PAGE-ACCESS-TOKEN" + pageAccessToken,
         method: "POST",
         header: { "content-type": "application/json" },
         
