@@ -27,11 +27,12 @@ app.get("/setup", function (req, res) {
             }
         ]
     };
+
     request(
         {
             url: "https://graph.facebook.com/v15.0/me/messenger_profile?access_token=" + pageAccessToken,
             method: "POST",
-            header: { "Content-Type": "application/json" },
+            header: { "content-type": "application/json" },
             form: data
         },
         function (error, response, body) {
@@ -39,6 +40,7 @@ app.get("/setup", function (req, res) {
             console.log(body);
         }
     );
+    res.send("done");
 });
 
 
