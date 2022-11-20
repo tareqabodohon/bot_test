@@ -14,18 +14,11 @@ app.get("/", function (req, res) {
     res.send("Hey!! I'm just a chatbot web app.");
 });
 
-
-app.get("/setup", function (req, res) {
-    let data = {
-        "greeting": [
-            {
-                "locale": "default",
-                "text": "مرحباً {{user_first_name}} أنا المجيب الآلي للصفحة"
-            }, {
-                "locale": "en_US",
-                "text": "Timeless apparel for the masses."
-            }
-        ]
+function setupGreatingButton(){
+    let data={
+        "get_started": {
+            "payload": "<postback_payload>"
+        }
     };
 
     request(
@@ -40,6 +33,36 @@ app.get("/setup", function (req, res) {
             console.log(body);
         }
     );
+};
+
+function setupGreatingText(){
+    let data={  "greeting": [
+        {
+            "locale": "default",
+            "text": "مرحباً {{user_first_name}} أنا المجيب الآلي للصفحة"
+        }, {
+            "locale": "en_US",
+            "text": "Timeless apparel for the masses."
+        }
+    ] };
+
+    request(
+        {
+            url: "https://graph.facebook.com/v15.0/me/messenger_profile?access_token=" + pageAccessToken,
+            method: "POST",
+            header: { "content-type": "application/json" },
+            form: data
+        },
+        function (error, response, body) {
+            console.log(response);
+            console.log(body);
+        }
+    );
+};
+app.get("/setup", function (req, res) {
+    setupGreatingButton();
+    setupGreatingText();
+    
     res.send("done");
 });
 
