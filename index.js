@@ -4,7 +4,7 @@ const request = require("request");
 
 const app=express();
 
-app.set("port",3000);
+app.set("port",process.env.PORT || 8000);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
