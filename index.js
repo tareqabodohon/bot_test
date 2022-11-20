@@ -170,6 +170,7 @@ function receivedMessage(event) {
             sendTextMsg(senderID,msg);
             break;
     }
+    res.sendStatus(200);
 };
 
 
