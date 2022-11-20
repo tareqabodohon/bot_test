@@ -9,6 +9,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+app.get("/",function (req,res){
+    res.send("Hey!! I'm just a chatbot web app.");
+});
+
 // Add support for GET requests to our webhook
 app.get("/webhook", (req, res) => {
    const pageToken = "test";
@@ -17,7 +21,7 @@ app.get("/webhook", (req, res) => {
     let token = req.query["hub.verify_token"];
     let challenge = req.query["hub.challenge"];
     if(token===pageToken){
-
+    res.status(200).send(challenge);
     }
     else{
         res.status(403).send();
@@ -25,9 +29,7 @@ app.get("/webhook", (req, res) => {
     });
 
 
-app.get("/",function (req,res){
-    res.send("Hey!! I'm just a chatbot web app.");
-});
+
 
 
 
