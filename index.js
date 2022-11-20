@@ -185,7 +185,7 @@ let data={
 
 request(
     {
-        url: "https://graph.facebook.com/v15.0/PAGE-ID/messages?access_token=" + pageAccessToken,
+        url: "https://graph.facebook.com/v15.0/me/messages?access_token=" + pageAccessToken,
         method: "POST",
         header: { "content-type": "application/json" },
         form: data
