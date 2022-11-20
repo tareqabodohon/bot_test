@@ -144,7 +144,7 @@ app.post("/webhook", (req, res) => {
 
                 }
                 else if (event.postback) {
-                    receivedPostback(event);
+                   // receivedPostback(event);
                 }
             });
         });
@@ -170,7 +170,7 @@ function receivedMessage(event,pageID) {
             sendTextMsg(senderID,msg,pageID);
             break;
     }
-    res.sendStatus(200);
+    
 };
 
 
