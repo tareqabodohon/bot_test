@@ -14,8 +14,8 @@ app.get("/", function (req, res) {
     res.send("Hey!! I'm just a chatbot web app.");
 });
 
-function setupGreatingButton(){
-    let data={
+function setupGreatingButton() {
+    let data = {
         "get_started": {
             "payload": "<postback_payload>"
         }
@@ -35,16 +35,18 @@ function setupGreatingButton(){
     );
 };
 
-function setupGreatingText(){
-    let data={  "greeting": [
-        {
-            "locale": "default",
-            "text": "مرحباً {{user_first_name}} أنا المجيب الآلي للصفحة"
-        }, {
-            "locale": "en_US",
-            "text": "Timeless apparel for the masses."
-        }
-    ] };
+function setupGreatingText() {
+    let data = {
+        "greeting": [
+            {
+                "locale": "default",
+                "text": "مرحباً {{user_first_name}} أنا المجيب الآلي للصفحة"
+            }, {
+                "locale": "en_US",
+                "text": "Timeless apparel for the masses."
+            }
+        ]
+    };
 
     request(
         {
@@ -59,10 +61,55 @@ function setupGreatingText(){
         }
     );
 };
+
+function setPersistentMenu() {
+    let data = {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "postback",
+                        "title": "تواصل معنا",
+                        "payload": "CONTACT_US"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "حول الصفحة",
+                        "payload": "ABOUT"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "عن خدمة المجيب الآلي",
+                        "url": "https://www.google.com/",
+                        "webview_height_ratio": "full"
+                    }
+                ]
+            }
+        ]
+    };
+
+    request(
+        {
+            url: "https://graph.facebook.com/v15.0/me/messenger_profile?access_token=" + pageAccessToken,
+            method: "POST",
+            header: { "content-type": "application/json" },
+            form: data
+        },
+        function (error, response, body) {
+            console.log(response);
+            console.log(body);
+        }
+    );
+};
+
+
+
 app.get("/setup", function (req, res) {
     setupGreatingButton();
     setupGreatingText();
-    
+    setPersistentMenu();
     res.send("done");
 });
 
