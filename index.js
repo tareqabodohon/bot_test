@@ -130,10 +130,73 @@ app.get("/webhook", (req, res) => {
 });
 
 
+app.post("/webhook", (req, res) => {
+    let data = req.body;
+    if (data.object === "page") {
+        Date.entry.forEach(function (entry) {
+            let pageID = entry.id;
+            let timeStamp = entry.time;
+
+            entry.messaging.forEach(function (event) {
+                if (event.message) {
+
+                    receivedMessage(event);
+
+                }
+                else if (event.postback) {
+                    receivedPostback(event);
+                }
+            });
+        });
+        res.sendStatus(200);
+    }
+});
+
+function receivedMessage(event) {
+    let senderID = event.sender.id;
+    let msgText = event.message.text;
+    switch (msgText) {
+        case "hi":
+           let msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
+            sendTextMsg(senderID,msg);
+            break;
+        case "hi":
+            let msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
+            sendTextMsg(senderID,msg);
+            break;
+        default:
+            let msg="لم افهم";
+            sendTextMsg(senderID,msg);
+            break;
+    }
+};
 
 
+function sendTextMsg(recipient_id,msg){
+let data={
+    "recipient":{
+        'id':recipient_id
+    },
+    "message":{
+        'text':msg
+    }   
+};
 
 
+request(
+    {
+        url: "https://graph.facebook.com/v15.0/PAGE-ID/messages?access_token=" + pageAccessToken,
+        method: "POST",
+        header: { "content-type": "application/json" },
+        form: data
+    },
+    function (error, response, body) {
+        console.log(response);
+        console.log(body);
+    }
+);
+
+};
 
 app.listen(app.get("port"), function () {
     console.log("server is runing on port : " + app.get("port"));
