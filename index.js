@@ -179,7 +179,7 @@ function sendTextMsg(recipient_id,msg){
 let data={
     "recipient":{
         'id':recipient_id
-    },
+    }, 
     "message":{
         'text':msg
     }   
