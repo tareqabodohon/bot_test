@@ -133,14 +133,14 @@ app.get("/webhook", (req, res) => {
 app.post("/webhook", (req, res) => {
     let data = req.body;
     if (data.object === "page") {
-        Date.entry.forEach(function (entry) {
+        date.entry.forEach(function (entry) {
             let pageID = entry.id;
             let timeStamp = entry.time;
 
             entry.messaging.forEach(function (event) {
                 if (event.message) {
 
-                    receivedMessage(event,pageID);
+                    receivedMessage(event);
 
                 }
                 else if (event.postback) {
@@ -152,7 +152,7 @@ app.post("/webhook", (req, res) => {
     }
 });
 
-function receivedMessage(event,pageID) {
+function receivedMessage(event) {
     let senderID = event.sender.id;
     let msgText = event.message.text;
     let msg;
