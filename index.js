@@ -210,7 +210,7 @@ function receivedPostback(event) {
     let msg;
     
     switch (payload) {
-        case "GET_STARTED_PAYLOAD":
+        case "get_started":
             msg="مرحبا بك {{user_first_name}}";
             sendTextMsg(senderID,msg);
             msg="انا المجيب الآلي للصفحة";
