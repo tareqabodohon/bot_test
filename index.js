@@ -187,10 +187,10 @@ let data={
 
 request(
     {
-        url: "https://graph.facebook.com/v15.0/105309762409266/messages?recipient={'id':"+recipient_id+"}&messaging_type=RESPONSE&message={'text':'hello,world'}&access_token=" + pageAccessToken,
+        url: "https://graph.facebook.com/v7.0/me/messages?access_token=" + pageAccessToken,
         method: "POST",
         header: { "content-type": "application/json" },
-        
+        form: data
     },
     function (error, response, body) {
         console.log(response);
