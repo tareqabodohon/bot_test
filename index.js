@@ -210,6 +210,12 @@ function receivedPostback(event) {
     let msg;
     
     switch (msgText) {
+        case "GET_STARTED_PAYLOAD":
+            msg="مرحبا بك {{user_first_name}}";
+            sendTextMsg(senderID,msg);
+            msg="انا المجيب الآلي للصفحة";
+            sendTextMsg(senderID,msg);
+            break;
         case "CONTACT_US":
             msg="لقد ضغط على زر تواصل معنا";
             sendTextMsg(senderID,msg);
