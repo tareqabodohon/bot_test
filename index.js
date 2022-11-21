@@ -133,7 +133,7 @@ app.get("/webhook", (req, res) => {
 app.post("/webhook", (req, res) => {
     let data = req.body;
     if (data.object === "page") {
-        date.entry.forEach(function (entry) {
+        data.entry.forEach(function (entry) {
             let pageID = entry.id;
             let timeStamp = entry.time;
 
