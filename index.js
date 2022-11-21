@@ -209,7 +209,7 @@ function receivedPostback(event) {
     let payload = event.postback.payload;
     let msg;
     
-    switch (msgText) {
+    switch (payload) {
         case "GET_STARTED_PAYLOAD":
             msg="مرحبا بك {{user_first_name}}";
             sendTextMsg(senderID,msg);
