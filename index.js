@@ -160,22 +160,22 @@ function receivedMessage(event) {
     switch (msgText) {
         case "hi":
             msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
-            sendTextMsg(senderID,msg,pageID);
+            sendTextMsg(senderID,msg);
             break;
         case "hi":
              msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
-            sendTextMsg(senderID,msg,pageID);
+            sendTextMsg(senderID,msg);
             break;
         default:
              msg="لم افهم";
-            sendTextMsg(senderID,msg,pageID);
+            sendTextMsg(senderID,msg);
             break;
     }
     
 };
 
 
-function sendTextMsg(recipient_id,msg,pageID){
+function sendTextMsg(recipient_id,msg){
 let data={
     "recipient":{
         'id':recipient_id
