@@ -156,7 +156,8 @@ function receivedMessage(event,pageID) {
     let senderID = event.sender.id;
     let msgText = event.message.text;
     let msg;
-    switch (msgText) {
+    console.log(msgText);
+  /*  switch (msgText) {
         case "hi":
             msg="أهلا بك انا المجيب الآلي كيف حالك ؟";
             sendTextMsg(senderID,msg,pageID);
@@ -169,7 +170,7 @@ function receivedMessage(event,pageID) {
              msg="لم افهم";
             sendTextMsg(senderID,msg,pageID);
             break;
-    }
+    }*/
     
 };
 
