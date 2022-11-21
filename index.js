@@ -144,7 +144,7 @@ app.post("/webhook", (req, res) => {
 
                 }
                 else if (event.postback) {
-                   // receivedPostback(event);
+                    receivedPostback(event);
                 }
             });
         });
@@ -201,6 +201,31 @@ request(
 );
  
 };
+
+
+
+function receivedPostback(event) {
+    let senderID = event.sender.id;
+    let payload = event.postback.payload;
+    let msg;
+    
+    switch (msgText) {
+        case "CONTACT_US":
+            msg="لقد ضغط على زر تواصل معنا";
+            sendTextMsg(senderID,msg);
+            break;
+        case "ABOUT":
+             msg="لقد ضغطت على حول الصفحة";
+            sendTextMsg(senderID,msg);
+            break;
+        default:
+             msg="خطأ غير معروف";
+            sendTextMsg(senderID,msg);
+            break;
+    }
+    
+};
+
 
 app.listen(app.get("port"), function () {
     console.log("server is runing on port : " + app.get("port"));
